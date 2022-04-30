@@ -44,7 +44,7 @@ class MainScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  Icon(Icons.menu, color: Colors.black),
+                  Icon(Icons.more_vert, color: Colors.black),
                 ],
               ),
             ),

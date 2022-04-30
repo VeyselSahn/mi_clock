@@ -3,8 +3,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mi_clock/component/ui/button_widget.dart';
 import 'package:mi_clock/view/alarm/model/alarm_model.dart';
-import 'package:mi_clock/view/alarm/view/add_alarm_screen.dart';
 
 class AlarmScreen extends ConsumerWidget {
   const AlarmScreen({Key? key}) : super(key: key);
@@ -34,24 +34,7 @@ class AlarmScreen extends ConsumerWidget {
             );
           },
         ),
-        Positioned(
-            bottom: 50,
-            height: 70,
-            width: 70,
-            child: Card(
-              elevation: 10,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-              child: IconButton(
-                icon: const Icon(Icons.add, size: 30, color: Colors.blue),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const AddAlarmScreen(),
-                      ));
-                },
-              ),
-            ))
+        const Positioned(bottom: 40, child: ButtonWidget(icon: Icons.add))
       ],
     );
   }

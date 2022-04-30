@@ -41,6 +41,7 @@ dependencies:
   hive_flutter: ^1.1.0
   #Ui
   numberpicker: ^2.1.1
+  stop_watch_timer: ^1.4.0
 
 dev_dependencies:
   flutter_lints: ^1.0.0
