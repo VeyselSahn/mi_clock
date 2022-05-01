@@ -2,39 +2,51 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:mi_clock/component/constant/getit_const.dart';
 import 'package:mi_clock/component/ui/button_widget.dart';
 import 'package:mi_clock/view/alarm/model/alarm_model.dart';
+import 'package:mi_clock/view/alarm/view/add_alarm_screen.dart';
+import 'package:mi_clock/view/alarm/viewmodel/alarm_view_model.dart';
+import 'package:stacked/stacked.dart';
 
 class AlarmScreen extends StatelessWidget {
   const AlarmScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.topCenter,
-      children: [
-        ListView.builder(
-          itemCount: list.length,
-          physics: const BouncingScrollPhysics(),
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 14),
-              child: ListTile(
-                title: Text(list[index].time!.hour.toString() + ':' + list[index].time!.minute.toString()),
-                subtitle: Text(
-                  list[index].repeat! + ' | ' + 'Alarm in 23 hours 59 minutes',
-                  overflow: TextOverflow.ellipsis,
+    return ViewModelBuilder<AlarmViewModel>.reactive(
+      viewModelBuilder: () => AlarmViewModel(),
+      onModelReady: (_model) => _model.getAlarms(),
+      onDispose: (model) => print('onDispose'),
+      builder: (context, model, child) => Stack(
+        alignment: Alignment.topCenter,
+        children: [
+          ListView.builder(
+            itemCount: model.alarms.length,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 14),
+                child: ListTile(
+                  title: Text(model.alarms[index].hour.toString() + ':' + model.alarms[index].minute.toString()),
+                  subtitle: Text(
+                    model.alarms[index].repeat! + ' | ' + 'Alarm in 23 hours 59 minutes',
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  trailing: CupertinoSwitch(
+                      value: model.alarms[index].isActive!,
+                      onChanged: (val) => model.changeActiveStatus(index),
+                      activeColor: Colors.blue),
                 ),
-                trailing: CupertinoSwitch(
-                    value: list[index].isActive!,
-                    onChanged: (val) => list[index].isActive = val,
-                    activeColor: Colors.blue),
-              ),
-            );
-          },
-        ),
-        const Positioned(bottom: 40, child: ButtonWidget(icon: Icons.add))
-      ],
+              );
+            },
+          ),
+          Positioned(
+              bottom: 40,
+              child: GestureDetector(onTap: () => model.navigate(), child: const ButtonWidget(icon: Icons.add)))
+        ],
+      ),
     );
   }
 }

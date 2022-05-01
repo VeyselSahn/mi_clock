@@ -34,6 +34,8 @@ dependencies:
   flutter_local_notifications: ^9.4.1
   workmanager: ^0.4.1
   #State Management
+  provider: ^6.0.2
+  stacked: ^2.3.3
   #Injection
   get_it: ^7.2.0
   #Cache
@@ -44,6 +46,8 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^1.0.0
+  hive_generator: ^1.1.2
+  build_runner: ^2.1.10
   flutter_test:
     sdk: flutter
 
