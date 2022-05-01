@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mi_clock/core/helper/extensions/size_extension.dart';
 import 'package:numberpicker/numberpicker.dart';
 
-class AddAlarmScreen extends ConsumerWidget {
+class AddAlarmScreen extends StatelessWidget {
   const AddAlarmScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Column(

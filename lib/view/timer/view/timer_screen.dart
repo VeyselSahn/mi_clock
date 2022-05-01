@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mi_clock/component/ui/button_widget.dart';
 import 'package:mi_clock/core/helper/extensions/size_extension.dart';
 import 'package:numberpicker/numberpicker.dart';
 
-class TimerScreen extends ConsumerWidget {
+class TimerScreen extends StatelessWidget {
   const TimerScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Stack(children: [
       Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

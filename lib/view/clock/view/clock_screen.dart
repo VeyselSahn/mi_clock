@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import '../../../component/ui/button_widget.dart';
 
-class ClockScreen extends ConsumerWidget {
+class ClockScreen extends StatelessWidget {
   const ClockScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     var list = [];
     return Stack(alignment: Alignment.center, children: [
       Padding(

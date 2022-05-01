@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mi_clock/component/ui/button_widget.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 
@@ -7,11 +6,11 @@ final StopWatchTimer timer = StopWatchTimer(
   mode: StopWatchMode.countUp,
 );
 
-class ChronometerScreen extends ConsumerWidget {
+class ChronometerScreen extends StatelessWidget {
   const ChronometerScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Stack(alignment: Alignment.center, children: [
       Column(
         crossAxisAlignment: CrossAxisAlignment.center,
