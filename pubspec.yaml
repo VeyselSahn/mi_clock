@@ -40,6 +40,8 @@ dependencies:
   get_it: ^7.2.0
   #Cache
   hive_flutter: ^1.1.0
+  #Time&Number Format
+  intl:
   #Ui
   numberpicker: ^2.1.1
   stop_watch_timer: ^1.4.0
