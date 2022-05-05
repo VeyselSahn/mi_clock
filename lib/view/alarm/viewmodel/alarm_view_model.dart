@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mi_clock/component/constant/cache_enum.dart';
 import 'package:mi_clock/component/constant/getit_const.dart';
 import 'package:mi_clock/component/ui/bottom_sheet.dart';
@@ -14,7 +15,11 @@ class AlarmViewModel extends ChangeNotifier {
   }
 
   void getAlarms() async {
-    await GlobalVar.cacheService.openBox(HiveBoxNames.alarms);
+    var _box = await GlobalVar.cacheService.openBox(HiveBoxNames.alarms);
+    _box.listenable().addListener(() {
+      Iterable _res = GlobalVar.cacheService.getAlarms(HiveBoxNames.alarms);
+      fillAlarms(_res.toList() as List<AlarmModel>);
+    });
     Iterable _res = GlobalVar.cacheService.getAlarms(HiveBoxNames.alarms);
     fillAlarms(_res.toList() as List<AlarmModel>);
   }

@@ -1,4 +1,3 @@
-import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -18,8 +17,6 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(AlarmModelAdapter());
   // TimerService().initializeService();
-  await AndroidAlarmManager.initialize();
-
   setUpLocators();
   runApp(const MyApp());
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mi_clock/core/helper/extensions/size_extension.dart';
+import 'package:mi_clock/view/clock/viewmodel/clock_view_model.dart';
+import 'package:stacked/stacked.dart';
 import '../../../component/ui/button_widget.dart';
 
 class ClockScreen extends StatelessWidget {
@@ -6,23 +9,35 @@ class ClockScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var list = [];
-    return Stack(alignment: Alignment.center, children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              '11:13:35',
-              style: TextStyle(color: Colors.black, fontSize: 32, fontWeight: FontWeight.w500),
-            ),
-            const Text(
-              'Current: 30/04/2022',
-              style: TextStyle(color: Colors.grey, fontSize: 17, fontWeight: FontWeight.normal),
-            ),
-            Expanded(
-              child: list.isEmpty
+    var list = [
+      1,
+      2,
+      3,
+      4,
+      5,
+    ];
+    return ViewModelBuilder<ClockViewModel>.reactive(
+      viewModelBuilder: () => ClockViewModel(),
+      onModelReady: (model) => model.init(),
+      disposeViewModel: false,
+      builder: (context, viewModel, child) => Stack(alignment: Alignment.center, children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                viewModel.clock,
+                style: const TextStyle(color: Colors.black, fontSize: 32, fontWeight: FontWeight.w500),
+              ),
+              Text(
+                'Current: ' + viewModel.date,
+                style: const TextStyle(color: Colors.grey, fontSize: 17, fontWeight: FontWeight.normal),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              list.isEmpty
                   ? Center(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -36,24 +51,28 @@ class ClockScreen extends StatelessWidget {
                         ],
                       ),
                     )
-                  : ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: list.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          title: Text('Alarm $index'),
-                          trailing: const Icon(Icons.alarm),
-                        );
-                      },
-                    ),
-            )
-          ],
+                  : SizedBox(
+                      height: context.height * .6,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: viewModel.clocks.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            title: Text(viewModel.clocks[index].cityName),
+                            subtitle: Text(viewModel.returnSubtitle(viewModel.clocks[index].difference)),
+                            leading: const Icon(Icons.alarm),
+                          );
+                        },
+                      ),
+                    )
+            ],
+          ),
         ),
-      ),
-      const Positioned(
-        bottom: 40,
-        child: ButtonWidget(icon: Icons.add),
-      ),
-    ]);
+        Positioned(
+          bottom: 40,
+          child: GestureDetector(onTap: () => viewModel.showClocks(), child: ButtonWidget(icon: Icons.add)),
+        ),
+      ]),
+    );
   }
 }

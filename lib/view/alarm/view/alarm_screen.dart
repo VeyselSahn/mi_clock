@@ -15,6 +15,7 @@ class AlarmScreen extends StatelessWidget {
       viewModelBuilder: () => AlarmViewModel(),
       onModelReady: (_model) => _model.getAlarms(),
       onDispose: (model) => print('onDispose'),
+      disposeViewModel: false,
       builder: (context, model, child) => Stack(
         alignment: Alignment.topCenter,
         children: [

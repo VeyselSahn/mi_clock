@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
-import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:mi_clock/component/ui/bottom_sheet.dart';
 
 class TimerViewModel extends ChangeNotifier {
@@ -54,9 +53,7 @@ class TimerViewModel extends ChangeNotifier {
     var _time = DateTime.now().add(Duration(hours: hour, minutes: minute, seconds: second));
   }
 
-  void cancel() async {
-    await AndroidAlarmManager.cancel(1);
-  }
+  void cancel() async {}
 }
 
 enum TimerItem { hour, minute, second }

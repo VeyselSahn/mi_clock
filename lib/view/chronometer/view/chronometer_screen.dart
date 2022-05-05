@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mi_clock/component/ui/button_widget.dart';
+import 'package:mi_clock/core/helper/extensions/size_extension.dart';
 import 'package:mi_clock/view/chronometer/model/lap_model.dart';
 import 'package:mi_clock/view/chronometer/viewmodel/chronometer_view_mdoel.dart';
 import 'package:stacked/stacked.dart';
@@ -52,7 +53,7 @@ class _ChronometerScreenState extends State<ChronometerScreen> {
               viewModel.lapList.isEmpty
                   ? const SizedBox()
                   : SizedBox(
-                      height: 300,
+                      height: context.height * .4,
                       child: ListView.builder(
                           physics: const BouncingScrollPhysics(),
                           padding: EdgeInsets.zero,
