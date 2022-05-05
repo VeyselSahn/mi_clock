@@ -9,13 +9,6 @@ class ClockScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var list = [
-      1,
-      2,
-      3,
-      4,
-      5,
-    ];
     return ViewModelBuilder<ClockViewModel>.reactive(
       viewModelBuilder: () => ClockViewModel(),
       onModelReady: (model) => model.init(),
@@ -37,7 +30,7 @@ class ClockScreen extends StatelessWidget {
               const SizedBox(
                 height: 50,
               ),
-              list.isEmpty
+              viewModel.clocks.isEmpty
                   ? Center(
                       child: Column(
                         mainAxisSize: MainAxisSize.min,

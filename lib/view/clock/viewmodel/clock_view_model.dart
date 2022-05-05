@@ -37,6 +37,7 @@ class ClockViewModel extends ChangeNotifier {
 
   final List<ClockModel> clockList = [
     ClockModel('London', 'England', 0),
+    ClockModel('Seatle', 'United States', -7),
     ClockModel('Sofia', 'Bulgaria', 3),
     ClockModel('Tokyo', 'Japan', 9)
   ];

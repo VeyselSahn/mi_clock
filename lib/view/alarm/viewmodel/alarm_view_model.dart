@@ -20,6 +20,7 @@ class AlarmViewModel extends ChangeNotifier {
       Iterable _res = GlobalVar.cacheService.getAlarms(HiveBoxNames.alarms);
       fillAlarms(_res.toList() as List<AlarmModel>);
     });
+    // for first filling
     Iterable _res = GlobalVar.cacheService.getAlarms(HiveBoxNames.alarms);
     fillAlarms(_res.toList() as List<AlarmModel>);
   }
@@ -37,8 +38,6 @@ class AlarmViewModel extends ChangeNotifier {
     _box.add(tempModel);
     GlobalVar.navigatorService.navigatePop();
   }
-
-  void editLastStatus() async {}
 
   navigate() {
     GlobalVar.navigatorService.navigateTo(const AddAlarmScreen());
