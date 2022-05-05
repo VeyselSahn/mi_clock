@@ -14,11 +14,15 @@ void main() async {
       systemNavigationBarColor: Colors.transparent,
       systemNavigationBarIconBrightness: Brightness.dark));
   WidgetsFlutterBinding();
+  WidgetsFlutterBinding.ensureInitialized();
+  setUpLocators();
+  await initHive();
+  runApp(const MyApp());
+}
+
+Future<void> initHive() async {
   await Hive.initFlutter();
   Hive.registerAdapter(AlarmModelAdapter());
-  // TimerService().initializeService();
-  setUpLocators();
-  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

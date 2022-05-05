@@ -4,16 +4,16 @@ import 'package:mi_clock/component/ui/bottom_sheet.dart';
 import 'package:mi_clock/view/clock/model/clock_model.dart';
 
 class ClockViewModel extends ChangeNotifier {
-  String clock = '00.00.00';
+  String clock = _clockFormatter.format(DateTime.now());
   String date = '';
-  var clockFormatter = DateFormat(DateFormat.HOUR24_MINUTE_SECOND);
+  static final _clockFormatter = DateFormat(DateFormat.HOUR24_MINUTE_SECOND);
   var dateFormatter = DateFormat(DateFormat.YEAR_MONTH_DAY);
   List<ClockModel> clocks = [];
 
   void init() async {
     await Future.delayed(
       const Duration(seconds: 1),
-      () => changeTime(clockFormatter.format(DateTime.now()), dateFormatter.format(DateTime.now())),
+      () => changeTime(_clockFormatter.format(DateTime.now()), dateFormatter.format(DateTime.now())),
     );
     init();
   }

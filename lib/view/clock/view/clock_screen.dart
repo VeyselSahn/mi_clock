@@ -63,7 +63,7 @@ class ClockScreen extends StatelessWidget {
         ),
         Positioned(
           bottom: 40,
-          child: GestureDetector(onTap: () => viewModel.showClocks(), child: ButtonWidget(icon: Icons.add)),
+          child: GestureDetector(onTap: () => viewModel.showClocks(), child: const ButtonWidget(icon: Icons.add)),
         ),
       ]),
     );

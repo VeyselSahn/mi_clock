@@ -31,9 +31,9 @@ dependencies:
   flutter:
     sdk: flutter
   #Background Service
-  flutter_local_notifications: ^9.4.1
-  workmanager: ^0.4.1
+  schedulers: ^0.3.1
   just_audio_background: ^0.0.1-beta.5
+  flutter_background_service: ^2.0.0
   #State Management
   provider: ^6.0.2
   stacked: ^2.3.3
