@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mi_clock/component/constant/getit_const.dart';
 import 'package:mi_clock/core/helper/extensions/size_extension.dart';
 import 'package:mi_clock/view/alarm/model/alarm_model.dart';
 import 'package:mi_clock/view/alarm/viewmodel/alarm_view_model.dart';
 import 'package:numberpicker/numberpicker.dart';
-import 'package:provider/provider.dart';
 import 'package:stacked/stacked.dart';
 
 class AddAlarmScreen extends StatelessWidget {

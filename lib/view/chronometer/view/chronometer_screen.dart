@@ -1,11 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:mi_clock/component/ui/button_widget.dart';
 import 'package:mi_clock/view/chronometer/model/lap_model.dart';
 import 'package:mi_clock/view/chronometer/viewmodel/chronometer_view_mdoel.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stop_watch_timer/stop_watch_timer.dart';
 
 class ChronometerScreen extends StatefulWidget {
   const ChronometerScreen({Key? key}) : super(key: key);

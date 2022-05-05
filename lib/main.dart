@@ -1,9 +1,9 @@
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mi_clock/component/constant/getit_const.dart';
 import 'package:mi_clock/core/init/init_getit.dart';
-import 'package:mi_clock/core/service/navigator_service.dart';
 import 'package:mi_clock/view/alarm/model/alarm_model.dart';
 import 'package:mi_clock/view/alarm/viewmodel/alarm_view_model.dart';
 import 'package:mi_clock/view/main/view/main_screen.dart';
@@ -17,6 +17,9 @@ void main() async {
   WidgetsFlutterBinding();
   await Hive.initFlutter();
   Hive.registerAdapter(AlarmModelAdapter());
+  // TimerService().initializeService();
+  await AndroidAlarmManager.initialize();
+
   setUpLocators();
   runApp(const MyApp());
 }

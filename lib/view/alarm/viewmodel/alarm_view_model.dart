@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mi_clock/component/constant/cache_enum.dart';
 import 'package:mi_clock/component/constant/getit_const.dart';
+import 'package:mi_clock/component/ui/bottom_sheet.dart';
 import 'package:mi_clock/view/alarm/model/alarm_model.dart';
 import 'package:mi_clock/view/alarm/view/add_alarm_screen.dart';
 
@@ -94,23 +95,7 @@ class AlarmViewModel extends ChangeNotifier {
       default:
     }
     var _value = '';
-    await showModalBottomSheet(
-        context: GlobalVar.context!,
-        builder: (context) {
-          return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: List.generate(
-                list.length,
-                (index) => ListTile(
-                  leading: const Icon(Icons.music_note),
-                  title: Text(list.elementAt(index)),
-                  onTap: () {
-                    _value = list[index];
-                    Navigator.pop(context);
-                  },
-                ),
-              ));
-        });
+    _value = await showCustomBottomSheet(list);
 
     changeStatus(_value, item);
   }

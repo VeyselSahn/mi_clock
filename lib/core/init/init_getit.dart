@@ -1,5 +1,4 @@
 import 'package:get_it/get_it.dart';
-import 'package:mi_clock/component/constant/cache_enum.dart';
 import 'package:mi_clock/core/service/alarm_service.dart';
 import 'package:mi_clock/core/service/cache_service.dart';
 
