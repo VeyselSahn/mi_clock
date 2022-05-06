@@ -15,7 +15,7 @@ class AddAlarmScreen extends StatelessWidget {
       viewModelBuilder: () => AlarmViewModel(),
       builder: (context, viewModel, child) => Scaffold(
         body: SafeArea(
-          child: Column(
+          child: ListView(
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:mi_clock/component/constant/cache_enum.dart';
+import 'package:mi_clock/component/constant/hive_box_names.dart';
 import 'package:mi_clock/component/constant/getit_const.dart';
 import 'package:mi_clock/component/ui/bottom_sheet.dart';
 import 'package:mi_clock/view/alarm/model/alarm_model.dart';
@@ -20,6 +20,7 @@ class AlarmViewModel extends ChangeNotifier {
       Iterable _res = GlobalVar.cacheService.getAlarms(HiveBoxNames.alarms);
       fillAlarms(_res.toList() as List<AlarmModel>);
     });
+    // for first filling
     Iterable _res = GlobalVar.cacheService.getAlarms(HiveBoxNames.alarms);
     fillAlarms(_res.toList() as List<AlarmModel>);
   }
@@ -37,8 +38,6 @@ class AlarmViewModel extends ChangeNotifier {
     _box.add(tempModel);
     GlobalVar.navigatorService.navigatePop();
   }
-
-  void editLastStatus() async {}
 
   navigate() {
     GlobalVar.navigatorService.navigateTo(const AddAlarmScreen());

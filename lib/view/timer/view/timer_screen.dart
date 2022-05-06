@@ -12,35 +12,52 @@ class TimerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<TimerViewModel>.reactive(
       viewModelBuilder: () => TimerViewModel(),
-      builder: (context, viewModel, child) => Stack(children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            buildClockNumbers(context, viewModel),
-            const SizedBox(
-              height: 0,
-            ),
-          ],
-        ),
-        Positioned(
-            bottom: 40,
-            width: context.width,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                GestureDetector(
-                    onTap: () => viewModel.cancel(), child: const SmallButtonWidget(icon: Icons.music_note)),
-                GestureDetector(onTap: () => viewModel.startTimer(), child: const ButtonWidget(icon: Icons.play_arrow)),
-                GestureDetector(
-                  onTap: () => viewModel.menuIcon(),
-                  child: const SmallButtonWidget(
-                    icon: Icons.density_medium_rounded,
+      onModelReady: (model) => model.init(),
+      disposeViewModel: false,
+      builder: (context, viewModel, child) => Stack(
+          alignment: Alignment.center,
+          children: viewModel.isRunning
+              ? runningWidget(viewModel)
+              : [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      buildClockNumbers(context, viewModel),
+                      const SizedBox(
+                        height: 0,
+                      ),
+                    ],
                   ),
-                )
-              ],
-            )),
-      ]),
+                  Positioned(
+                      bottom: 40,
+                      width: context.width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const SmallButtonWidget(icon: Icons.music_note),
+                          GestureDetector(
+                              onTap: () async => await viewModel.startTimer(),
+                              child: const ButtonWidget(icon: Icons.play_arrow)),
+                          GestureDetector(
+                            onTap: () => viewModel.menuIcon(),
+                            child: const SmallButtonWidget(
+                              icon: Icons.density_medium_rounded,
+                            ),
+                          )
+                        ],
+                      )),
+                ]),
     );
+  }
+
+  List<Widget> runningWidget(TimerViewModel viewModel) {
+    return [
+      const Text('Running'),
+      Positioned(
+        bottom: 40,
+        child: GestureDetector(onTap: () => viewModel.cancel(), child: const ButtonWidget(icon: Icons.stop)),
+      )
+    ];
   }
 
   Row buildClockNumbers(BuildContext context, TimerViewModel viewModel) {

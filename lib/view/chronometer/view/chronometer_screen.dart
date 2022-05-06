@@ -23,10 +23,7 @@ class _ChronometerScreenState extends State<ChronometerScreen> {
     return ViewModelBuilder<ChronometerViewModel>.reactive(
       viewModelBuilder: () => ChronometerViewModel(),
       disposeViewModel: false,
-      key: const Key('chrono'),
       onModelReady: (model) => model.init(),
-      // ignore: avoid_print
-      onDispose: (model) => print('dispose chrono'),
       builder: (context, viewModel, child) => Stack(alignment: Alignment.center, children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
