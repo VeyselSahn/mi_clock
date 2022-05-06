@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:mi_clock/component/constant/cache_enum.dart';
+import 'package:mi_clock/component/constant/hive_box_names.dart';
 import 'package:mi_clock/component/constant/getit_const.dart';
 import 'package:mi_clock/component/ui/bottom_sheet.dart';
 import 'package:mi_clock/view/alarm/model/alarm_model.dart';

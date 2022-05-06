@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:intl/intl.dart';
+import 'package:mi_clock/component/constant/getit_const.dart';
 import 'package:mi_clock/component/ui/bottom_sheet.dart';
-import 'package:mi_clock/core/service/background_service.dart';
 
 class TimerViewModel extends ChangeNotifier {
   int hour = 0;
@@ -66,13 +66,11 @@ class TimerViewModel extends ChangeNotifier {
   Future startTimer() async {
     var _time = DateTime.now().add(Duration(hours: hour, minutes: minute, seconds: second));
     final service = FlutterBackgroundService();
-    await initializeService();
-    //temproray
+    await GlobalVar.backgroundService.initializeService();
+    //temproray ,notf not working
     await Future.delayed(const Duration(seconds: 10));
     service.invoke('timer', {"time": _time.toString(), "text": "Is running"});
-
     changeIsRunning(true);
-    // scheduler.run(() => print('evet'), _time).result.then((value) => print('value geldi'));
   }
 
   void cancel() async {
